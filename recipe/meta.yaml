@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/raven-aiohttp-{{ version }}.zip
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/raven-aiohttp-{{ version }}.zip
   sha256: 1444a49c93a85b8bb57c6ee649e512368dce7a26ad64ac3a01d86aa5669d77f3
 
 build:
-  number: 1003
+  number: 1004
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -19,10 +19,10 @@ requirements:
   host:
     - pip
     - pytest
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - aiohttp >=2.0
-    - python >=3.6
+    - python >={{ python_min }}
     - raven >=5.4.0
 
 test:
@@ -32,6 +32,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/getsentry/raven-aiohttp
